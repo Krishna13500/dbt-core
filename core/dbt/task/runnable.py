@@ -39,6 +39,7 @@ from dbt.events.types import (
     NothingToDo,
 )
 from dbt.events.contextvars import log_contextvars
+from dbt.constants import MANIFEST_FILE_NAME
 from dbt.contracts.graph.manifest import Manifest
 from dbt.contracts.graph.nodes import SourceDefinition, ResultNode
 from dbt.contracts.results import NodeStatus, RunExecutionResult, RunningStatus
@@ -59,7 +60,6 @@ from dbt import flags
 import dbt.utils
 
 RESULT_FILE_NAME = "run_results.json"
-MANIFEST_FILE_NAME = "manifest.json"
 RUNNING_STATE = DbtProcessState("running")
 
 

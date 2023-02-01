@@ -11,6 +11,7 @@ from dbt.adapters.factory import get_adapter
 from dbt.parser.manifest import Manifest, ManifestLoader, _check_manifest
 from dbt.logger import DbtProcessState
 from dbt.clients.system import write_file
+from dbt.constants import MANIFEST_FILE_NAME
 from dbt.events.types import ParseCmdOut
 from dbt.events.functions import fire_event
 from dbt.graph import Graph
@@ -20,7 +21,6 @@ import os
 import json
 import dbt.utils
 
-MANIFEST_FILE_NAME = "manifest.json"
 PERF_INFO_FILE_NAME = "perf_info.json"
 PARSING_STATE = DbtProcessState("parsing")
 

@@ -1512,9 +1512,7 @@ message LogFreshnessResultMsg {
     LogFreshnessResult data = 2;
 }
 
-
 // Skipped Q019, Q020, Q021
-
 
 // Q022
 message LogCancelLine {

@@ -46,6 +46,7 @@ from dbt.context.providers import ParseProvider
 from dbt.contracts.files import FileHash, ParseFileType, SchemaSourceFile
 from dbt.parser.read_files import read_files, load_source_file
 from dbt.parser.partial import PartialParsing, special_override_macros
+from dbt.constants import MANIFEST_FILE_NAME
 from dbt.contracts.graph.manifest import (
     Manifest,
     Disabled,
@@ -399,6 +400,9 @@ class ManifestLoader:
 
             # write out the fully parsed manifest
             self.write_manifest_for_partial_parse()
+            # write out manifest.json
+            parsed_manifest_path = os.path.join(self.root_project.target_path, MANIFEST_FILE_NAME)
+            self.manifest.write(parsed_manifest_path)
 
         return self.manifest
 
@@ -574,7 +578,8 @@ class ManifestLoader:
             )
             fire_event(
                 Note(
-                    msg=f"previous checksum: {self.manifest.state_check.vars_hash.checksum}, current checksum: {manifest.state_check.vars_hash.checksum}"
+                    msg=f"previous checksum: {manifest.state_check.vars_hash.checksum}, "
+                    f"current checksum: {self.manifest.state_check.vars_hash.checksum}"
                 ),
                 level=EventLevel.DEBUG,
             )
